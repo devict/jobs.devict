@@ -11,7 +11,6 @@ $factory->define(Job::class, function (Faker $faker) {
         'organization' => $faker->sentence,
         'url' => $faker->url,
         'email' => $faker->email,
-        'token' => $faker->sha256,
     ];
 });
 

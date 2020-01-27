@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 
 class EditJobTest extends TestCase
@@ -15,14 +16,14 @@ class EditJobTest extends TestCase
     {
         $job = factory(Job::class)->create();
 
-        $this->get(route('guest.jobs.edit', $job->token))->assertStatus(200);
+        $this->get(URL::signedRoute('guest.jobs.edit', $job))->assertStatus(200);
     }
 
     /** @test */
     public function jobs_that_do_not_exist_cannot_be_edited()
     {
-        $this->get(route('guest.jobs.edit', ['token' => 999]))->assertStatus(404);
-        $this->put(route('guest.jobs.update', ['token' => 999]))->assertStatus(404);
+        $this->get(URL::signedRoute('guest.jobs.edit', ['job' => 999]))->assertStatus(404);
+        $this->put(URL::signedRoute('guest.jobs.update', ['job' => 999]))->assertStatus(404);
     }
 
     /** @test */
@@ -36,7 +37,7 @@ class EditJobTest extends TestCase
             'description' => 'Old description',
         ]);
 
-        $response = $this->put(route('guest.jobs.update', $job->token), [
+        $response = $this->put(URL::signedRoute('guest.jobs.update', $job), [
             'position' => 'Volunteer',
             'organization' => 'devICT',
             'email' => 'christian@example.com',
@@ -64,12 +65,12 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'position' => 'Old position',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'position' => '',
             ]));
 
-        $response->assertRedirect(route('guest.jobs.edit', $job->token));
+        $response->assertRedirect(URL::signedRoute('guest.jobs.edit', $job));
         $response->assertSessionHasErrors('position');
         tap($job->fresh(), function ($job) {
             $this->assertEquals('Old position', $job->position);
@@ -82,12 +83,12 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'organization' => 'Old organization',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'organization' => '',
             ]));
 
-        $response->assertRedirect(route('guest.jobs.edit', $job->token));
+        $response->assertRedirect(URL::signedRoute('guest.jobs.edit', $job));
         $response->assertSessionHasErrors('organization');
         tap($job->fresh(), function ($job) {
             $this->assertEquals('Old organization', $job->organization);
@@ -100,8 +101,8 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'url' => 'https://oldsite.com',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'url' => '',
             ]));
 
@@ -117,12 +118,12 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'url' => 'https://oldsite.com',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'url' => 'not-a-url',
             ]));
 
-        $response->assertRedirect(route('guest.jobs.edit', $job->token));
+        $response->assertRedirect(URL::signedRoute('guest.jobs.edit', $job));
         $response->assertSessionHasErrors('url');
         tap($job->fresh(), function ($job) {
             $this->assertEquals('https://oldsite.com', $job->url);
@@ -135,8 +136,8 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'description' => 'Old description',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'description' => '',
             ]));
 
@@ -152,12 +153,12 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'email' => 'old@example.com',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'email' => '',
             ]));
 
-        $response->assertRedirect(route('guest.jobs.edit', $job->token));
+        $response->assertRedirect(URL::signedRoute('guest.jobs.edit', $job));
         $response->assertSessionHasErrors('email');
         tap($job->fresh(), function ($job) {
             $this->assertEquals('old@example.com', $job->email);
@@ -170,12 +171,12 @@ class EditJobTest extends TestCase
         $job = factory(Job::class)->states('published')->create($this->oldAttributes([
             'email' => 'old@example.com',
         ]));
-        $response = $this->from(route('guest.jobs.edit', $job->token))
-            ->put(route('guest.jobs.update', $job->token), $this->validParams([
+        $response = $this->from(URL::signedRoute('guest.jobs.edit', $job))
+            ->put(URL::signedRoute('guest.jobs.update', $job), $this->validParams([
                 'email' => 'not-an-email',
             ]));
 
-        $response->assertRedirect(route('guest.jobs.edit', $job->token));
+        $response->assertRedirect(URL::signedRoute('guest.jobs.edit', $job));
         $response->assertSessionHasErrors('email');
         tap($job->fresh(), function ($job) {
             $this->assertEquals('old@example.com', $job->email);

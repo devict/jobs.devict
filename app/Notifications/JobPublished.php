@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\URL;
 
 class JobPublished extends Notification
 {
@@ -28,7 +29,7 @@ class JobPublished extends Notification
     {
         return (new MailMessage)
             ->line("A “{$this->job->position}” position at {$this->job->organization} was posted to the devICT Job Board")
-            ->action('Edit job post', route('guest.jobs.edit', $this->job->token));
+            ->action('Edit job post', URL::signedRoute('guest.jobs.edit', $this->job));
     }
 
     public function toSlack($notifiable)

@@ -21,7 +21,6 @@ class CreateJobsTable extends Migration
             $table->text('description')->nullable();
             $table->string('email');
             $table->timestamp('published_at')->nullable();
-            $table->string('token')->unique();
             $table->timestamps();
         });
     }

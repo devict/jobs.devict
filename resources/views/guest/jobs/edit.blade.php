@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('content')
-    <form method="post" action="{{ route('guest.jobs.update', $job->token) }}">
+    <form method="post" action="{{ URL::signedRoute('guest.jobs.update', $job) }}">
         @csrf
         @method('put')
         @include('guest.jobs._fields')
@@ -16,7 +16,7 @@
     <form
         id="delete-form"
         method="post"
-        action="{{ route('guest.jobs.destroy', $job->token) }}"
+        action="{{ URL::signedRoute('guest.jobs.destroy', $job) }}"
         onsubmit="return confirm('Are you sure you want to remove this job?')"
         style="display:none;"
     >

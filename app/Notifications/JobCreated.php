@@ -6,6 +6,7 @@ use App\Job;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\URL;
 
 class JobCreated extends Notification
 {
@@ -28,7 +29,7 @@ class JobCreated extends Notification
         return (new MailMessage)
             ->line("Thanks for adding your “{$this->job->position}” position to the devICT Job Board!")
             ->line('Use the link below to edit or remove your job post. **Keep in mind that anyone with this link can make changes to your post so be sure to keep it private.**')
-            ->action('Edit job post', route('guest.jobs.edit', $this->job->token))
+            ->action('Edit job post', URL::signedRoute('guest.jobs.edit', $this->job))
             ->line('Your job post will automatically expire after 30 days.');
     }
 

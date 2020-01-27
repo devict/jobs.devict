@@ -7,7 +7,6 @@ use App\Notifications\JobPublished;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Str;
 
 class Job extends Model
 {
@@ -17,25 +16,11 @@ class Job extends Model
 
     public static function create(array $attributes = [])
     {
-        $job = self::query()->create($attributes + [
-            'token' => hash_hmac('sha256', Str::random(40), config('app.key')),
-        ]);
+        $job = self::query()->create($attributes);
 
         return tap($job, function ($job) {
             Notification::route('mail', $job->email)->notify(new JobCreated($job));
         });
-    }
-
-    public static function make(array $attributes = [])
-    {
-        return self::query()->make($attributes + [
-            'token' => hash_hmac('sha256', Str::random(40), config('app.key')),
-        ]);
-    }
-
-    public static function findByToken($token)
-    {
-        return self::where('token', $token)->firstOrFail();
     }
 
     public function scopePublished($query)

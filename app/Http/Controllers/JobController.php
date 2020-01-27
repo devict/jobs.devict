@@ -46,16 +46,16 @@ class JobController extends Controller
         ]);
     }
 
-    public function edit($token)
+    public function edit(Job $job)
     {
         return view('guest.jobs.edit', [
-            'job' => Job::findByToken($token),
+            'job' => $job,
         ]);
     }
 
-    public function update(Request $request, $token)
+    public function update(Request $request, Job $job)
     {
-        Job::findByToken($token)->update($request->validate([
+        $job->update($request->validate([
             'position' => ['required', 'string', 'max:255'],
             'organization' => ['required', 'string', 'max:255'],
             'url' => ['required_without:description', 'nullable', 'url', 'max:510'],
@@ -67,9 +67,9 @@ class JobController extends Controller
             ->with('success', 'Job details updated.');
     }
 
-    public function destroy($token)
+    public function destroy(Job $job)
     {
-        Job::findByToken($token)->delete();
+        $job->delete();
 
         return redirect()->route('guest.jobs.index')
             ->with('success', 'Job removed.');

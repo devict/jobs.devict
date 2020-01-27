@@ -15,29 +15,6 @@ class JobTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_has_a_token_when_created()
-    {
-        $job = Job::create([
-            'position' => 'test',
-            'organization' => 'test',
-            'url' => 'test',
-            'email' => 'christian@example.com',
-        ]);
-
-        $this->assertNotNull($job->token);
-    }
-
-    /** @test */
-    public function it_must_have_a_unique_token()
-    {
-        $tokens = array_map(function () {
-            return Job::make()->token;
-        }, range(1, 100));
-
-        $this->assertCount(100, array_unique($tokens));
-    }
-
-    /** @test */
     public function it_sends_a_notifiation_when_created()
     {
         Notification::fake();
