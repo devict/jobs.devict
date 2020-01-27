@@ -1,0 +1,38 @@
+.btn {
+  @apply rounded inline-block no-underline font-semibold text-center py-2 px-6;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.btn-primary {
+  @apply bg-orange-400 text-orange-900;
+  &:hover,
+  &:focus,
+  &:active {
+    @apply bg-orange-300;
+  }
+  &:active {
+    @apply shadow-inner;
+  }
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800;
+  &:hover,
+  &:focus,
+  &:active {
+    @apply bg-gray-100 text-blue-500;
+  }
+  &:active {
+    @apply shadow-inner;
+  }
+}
+
+.btn:disabled {
+  @apply bg-gray-300 text-gray-500 shadow-inner cursor-not-allowed;
+  &:hover {
+    @apply bg-gray-300 text-gray-500;
+  }
+}

@@ -1,0 +1,10 @@
+.form-label {
+  @apply text-sm inline-block text-gray-700 leading-tight mb-2;
+}
+.form-description {
+  @apply form-label block;
+}
+
+.form-error {
+  @apply form-label font-semibold block text-red-600;
+}
