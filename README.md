@@ -11,8 +11,8 @@ The following steps cover basic installation using Laravel's built-in web server
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/devict/job-board job-board
-cd job-board
+git clone https://github.com/devict/jobs.devict jobs.devict
+cd jobs.devict
 ```
 
 Install PHP dependencies:
