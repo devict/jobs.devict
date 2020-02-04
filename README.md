@@ -65,6 +65,32 @@ php artisan serve
 
 You're ready to go! Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
+## Installing w/ Docker
+
+Copy config files, install dependencies.
+
+```
+$ cp .env.example .env
+$ cp .db.env.example .db.env
+$ make setup
+```
+
+Edit `.env` and `.db.env` to set a database password.
+
+Now, start things by running docker compose.
+
+```
+$ make start
+```
+
+Then in another terminal session, create and migrate the database.
+
+```
+$ make migrate
+```
+
+Visit http://localhost:8001!
+
 ## Notifications
 
 The Job Board will send an email and Slack notification when new jobs are added to the board. The recipient of these notifications is configured in the `.env` file. Set the `JOBS_EMAIL` value to a valid email address and the `JOBS_SLACK_HOOK` to a valid [Slack webhook](https://api.slack.com/messaging/webhooks). Both of these settings are optional and the Job Board should still function without them set.

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.app
+    working_dir: /usr/src/app
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8001:8000
+    command: 'php artisan serve --host=0.0.0.0'
+
+  client:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.client
+    working_dir: /usr/src/app
+    env_file:
+      - .env
+    volumes:
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
+    # TODO: prod build for prod?
+    command: 'npm run watch'
+
+  db:
+    image: postgres:11
+    env_file:
+      - .db.env
+    volumes:
+      - /var/lib/postgresql/data
