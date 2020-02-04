@@ -14,7 +14,7 @@ deps:
 build:
 	docker-compose build
 
-db-migrate: start
+db-migrate:
 	docker-compose run --rm app php artisan migrate
 
 app-key:
