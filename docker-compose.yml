@@ -33,4 +33,7 @@ services:
     env_file:
       - .db.env
     volumes:
-      - /var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
