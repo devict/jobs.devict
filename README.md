@@ -72,10 +72,15 @@ Copy config files, install dependencies.
 ```
 $ cp .env.example .env
 $ cp .db.env.example .db.env
-$ make setup
 ```
 
-Edit `.env` and `.db.env` to set a database password.
+Edit both files to set a database password (must match).
+
+Next run..
+
+```
+$ make setup
+```
 
 Now, start things by running docker compose.
 
@@ -83,10 +88,11 @@ Now, start things by running docker compose.
 $ make start
 ```
 
-Then in another terminal session, create and migrate the database.
+Then in another terminal session, create and migrate the database. The server
+must be running in order for the migrate command to work.
 
 ```
-$ make migrate
+$ make db-migrate
 ```
 
 Visit http://localhost:8001!
