@@ -31,7 +31,7 @@
                 @endif
             </li>
         @empty
-            <li class="text-lg font-light text-center">
+            <li class="text-lg font-light text-center p-4">
                 <strong class="font-bold">No job openings posted.</strong> The software development industry is 100% employed at the moment.
             </li>
         @endforelse
