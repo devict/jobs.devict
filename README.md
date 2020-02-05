@@ -4,16 +4,48 @@ The greatest job board in all the universe. You've never seen job postings like 
 
 ## Installation
 
-The devICT Job Board is built with [Laravel](https://laravel.com). This project requires PHP (>= 7.2.0), PHP Composer, SQLite3, and NPM.
-
-The following steps cover basic installation using Laravel's built-in web server on a Mac. For Windows machines [Laravel Homestead](https://laravel.com/docs/master/homestead) or [Laragon](https://laragon.org/) provide turn-key solutions for setting up a dev environment.
-
-Clone the repo locally:
+Step one is to clone this repo:
 
 ```sh
 git clone https://github.com/devict/jobs.devict jobs.devict
 cd jobs.devict
 ```
+
+If you're looking to get started quickly we recommend using our [Docker setup](#docker-setup). If you already have PHP (>= 7.2.0), PHP Composer, SQLite3, and NPM on your machine you can follow our [basic setup steps](#basic-setup).
+
+### Docker Setup
+
+Copy config files, install dependencies.
+
+```sh
+cp .env.example .env
+cp .db.env.example .db.env
+```
+
+Edit both files to set a database password (they must match).
+
+Next run..
+
+```sh
+make setup
+```
+
+Now, start things by running docker compose.
+
+```sh
+make start
+```
+
+Then in another terminal session, create and migrate the database. The server
+must be running in order for the migrate command to work.
+
+```sh
+make db-migrate
+```
+
+Visit http://localhost:8001!
+
+### Basic Setup
 
 Install PHP dependencies:
 
@@ -64,38 +96,6 @@ php artisan serve
 ```
 
 You're ready to go! Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
-
-## Installing w/ Docker
-
-Copy config files, install dependencies.
-
-```
-$ cp .env.example .env
-$ cp .db.env.example .db.env
-```
-
-Edit both files to set a database password (must match).
-
-Next run..
-
-```
-$ make setup
-```
-
-Now, start things by running docker compose.
-
-```
-$ make start
-```
-
-Then in another terminal session, create and migrate the database. The server
-must be running in order for the migrate command to work.
-
-```
-$ make db-migrate
-```
-
-Visit http://localhost:8001!
 
 ## Notifications
 
