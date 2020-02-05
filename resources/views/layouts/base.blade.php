@@ -31,12 +31,22 @@
             @yield('content')
         </div>
     </main>
-    <footer class="footer-image text-center font-semibold text-orange-500">
-        <span class="block text-center mb-2">A project by</span>
-        <a href="https://devict.org">
-            <img src="{{ asset('svg/devict-logo.svg') }}" alt="devICT" class="h-6 block mb-2 mx-auto">
-        </a>
-        <a href="https://github.com/devict/jobs.devict" class="hover:underline focus:underline">Contribute on GitHub</a>
+    <footer class="footer-image text-center font-semibold">
+        <p class="mb-1" style="color:#0080ff;">This project is supported by:</p>
+        <p>
+            <a href="https://www.digitalocean.com/">
+                <img class="mx-auto h-6" src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg">
+            </a>
+        </p>
+        <hr class="my-4 border-t-2 border-blue-700 w-16 mx-auto">
+        <p class="block text-center text-orange-500 mb-1">Made by
+            <a href="https://devict.org">
+                <img src="{{ asset('svg/devict-logo.svg') }}" alt="devICT" class="h-5 inline-block mx-auto">
+            </a>
+        <p>
+        <p class="text-orange-500">
+            <a href="https://github.com/devict/jobs.devict" class="underline hover:no-underline focus:no-underline">Contribute on GitHub</a>
+        </p>
     </footer>
 </body>
 </html>

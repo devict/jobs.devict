@@ -974,13 +974,24 @@ video {
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 2rem;
+  padding-top: 3rem;
   padding-bottom: 1rem;
   background-image: url('/svg/circuit-board.svg');
   background-position: center;
-  border-top-left-radius: 300px;
-  border-top-right-radius: 300px;
+  border-top-left-radius: 160px;
+  border-top-right-radius: 160px
 }
+
+@media (min-width: 640px) {
+
+.footer-image {
+    padding-top: 2rem;
+
+    border-top-left-radius: 300px;
+
+    border-top-right-radius: 300px
+}
+  }
 
 .btn {
   border-radius: 0.25rem;
