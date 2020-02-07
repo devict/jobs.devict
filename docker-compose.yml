@@ -2,30 +2,29 @@ version: '3'
 
 services:
 
-  app:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.app
-    working_dir: /usr/src/app
-    env_file:
-      - .env
+  caddy:
+    image: abiosoft/caddy:php-no-stats
     volumes:
+      - ./docker/caddy/Caddyfile:/etc/Caddyfile
       - .:/usr/src/app
     ports:
-      - 8001:8000
-    command: 'php artisan serve --host=0.0.0.0'
+      - 8001:2015
+    links:
+      - php-fpm
+
+  php-fpm:
+    build: ./docker/php-fpm
+    working_dir: /usr/src/app/public
+    volumes:
+      - .:/usr/src/app
 
   client:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.client
-    working_dir: /usr/src/app
+    build: ./docker/client
     env_file:
       - .env
     volumes:
       - /usr/src/app/node_modules
       - .:/usr/src/app
-    # TODO: prod build for prod?
     command: 'npm run watch'
 
   db:
@@ -33,7 +32,16 @@ services:
     env_file:
       - .db.env
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - devict-jobs-pgdata:/var/lib/postgresql/data
+
+  # This service is just used for running artisan commands
+  php:
+    build: ./docker/php
+    working_dir: /usr/src/app
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
 
 volumes:
-  pgdata:
+  devict-jobs-pgdata:
