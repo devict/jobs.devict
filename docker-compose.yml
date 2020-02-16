@@ -13,13 +13,17 @@ services:
       - php-fpm
 
   php-fpm:
-    build: ./docker/php-fpm
+    build:
+      context: .
+      dockerfile: ./docker/php-fpm/Dockerfile
     working_dir: /usr/src/app/public
     volumes:
       - .:/usr/src/app
 
   client:
-    build: ./docker/client
+    build:
+      context: .
+      dockerfile: ./docker/client/Dockerfile
     env_file:
       - .env
     volumes:
@@ -36,7 +40,9 @@ services:
 
   # This service is just used for running artisan commands
   php:
-    build: ./docker/php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
     working_dir: /usr/src/app
     env_file:
       - .env
