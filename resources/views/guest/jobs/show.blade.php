@@ -2,7 +2,7 @@
 @section('content')
     <h2 class="font-bold text-lg">{{ $job->position }}</h2>
     <div class="mb-6">{{ $job->organization }}</div>
-    <div class="mb-6">{{ $job->description }}</div>
+    <div class="mb-6">{!! $job->formatted_description !!}</div>
     @if ($job->url)
         <div class="mb-6">
             <a href="{{ $job->url }}" target="_blank" class="btn btn-primary">

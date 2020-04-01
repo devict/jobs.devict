@@ -23,6 +23,11 @@ class Job extends Model
         });
     }
 
+    public function getFormattedDescriptionAttribute()
+    {
+        return nl2br(e($this->description));
+    }
+
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
