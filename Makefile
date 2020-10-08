@@ -2,7 +2,7 @@
 
 setup: deps build app-key
 
-codespace:
+codespaces:
 	# Backend
 	composer install
 	touch database/database.sqlite
