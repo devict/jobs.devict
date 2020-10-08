@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "dependsOn": [
+                "Server Build",
+                "Client Build"
+            ],
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Client Build",
+            "command": "npm run watch",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": {
+                "base": "$tsc-watch",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "webpack is watching the files",
+                    "endsPattern": "Compiled successfully"
+                }
+            },
+            "presentation": {
+                "group": "build",
+                "reveal": "always"
+            },
+            "isBackground": true
+        },
+        {
+            "label": "Server Build",
+            "command": "php artisan serve",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": {
+                "base": "$tsc-watch",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Laravel development server started",
+                    "endsPattern": "Laravel development server started"
+                }
+            },
+            "presentation": {
+                "group": "build",
+                "reveal": "always"
+            },
+            "isBackground": true
+        }
+    ]
+}
