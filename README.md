@@ -97,6 +97,20 @@ php artisan serve
 
 You're ready to go! Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
+
+
+### GitHub Codespaces Setup
+
+> You will need access to Codespaces for these steps to work: https://github.com/features/codespaces
+
+Create a Codespace for this repo by following this guide: https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/creating-a-codespace. All dependencies will be automatically installed after creation.
+
+Connecting to the Codespace using Visual Studio Code is recommended. See this guide for more details: https://docs.github.com/en/free-pro-team@latest/github/developing-online-with-codespaces/using-codespaces-in-visual-studio-code
+
+Once installation is complete, start the client and server in the workspace by typing `task build` in **Command Palette** or **Go To File** (open the palette from the menu, or with `Ctrl + P`, `Cmd + P`, or `F1`). A split terminal will spawn with the build tasks running, automatically forwarding required ports.
+
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser!
+
 ## Notifications
 
 The Job Board will send an email and Slack notification when new jobs are added to the board. The recipient of these notifications is configured in the `.env` file. Set the `JOBS_EMAIL` value to a valid email address and the `JOBS_SLACK_HOOK` to a valid [Slack webhook](https://api.slack.com/messaging/webhooks). Both of these settings are optional and the Job Board should still function without them set.
