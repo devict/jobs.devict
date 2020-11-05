@@ -2,6 +2,18 @@
 
 setup: deps build app-key
 
+codespaces:
+	# Backend
+	composer install
+	touch database/database.sqlite
+	cp .devcontainer.env.example .env
+	php artisan key:generate
+	php artisan migrate
+
+	# Frontend
+	npm install
+	code README.md
+
 dev:
 	docker-compose up client caddy php-fpm db
 

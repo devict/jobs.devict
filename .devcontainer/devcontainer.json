@@ -1,0 +1,6 @@
+{
+    "postCreateCommand": "make codespaces",
+    "forwardPorts": [
+        8000
+    ]
+}
