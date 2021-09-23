@@ -113,6 +113,14 @@ Run the PHPUnit tests:
 vendor/bin/phpunit
 ```
 
+## Logging into the database
+
+```
+$ make psql
+```
+
+This command will launch a `psql` sessions into the running database on the docker-compose service.
+
 ## Sponsors
 
 <p>This project is supported by:</p>
