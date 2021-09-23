@@ -23,3 +23,6 @@ db-migrate:
 
 app-key:
 	docker-compose run --rm php php artisan key:generate
+
+psql:
+	docker-compose exec -T db psql -U jobs
