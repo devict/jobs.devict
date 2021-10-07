@@ -1,6 +1,6 @@
 .PHONY: deps
 
-setup: deps build app-key
+setup: deps build app-key db-migrate
 
 dev:
 	docker-compose up client caddy php-fpm db

@@ -25,7 +25,7 @@ class Job extends Model
 
     public function getFormattedDescriptionAttribute()
     {
-        return nl2br(e($this->description));
+        return autolinkUrls(nl2br(e($this->description)));
     }
 
     public function scopePublished($query)
@@ -73,4 +73,10 @@ class Job extends Model
     {
         return ! $this->isRecent();
     }
+}
+
+function autolinkUrls($text) {
+    $urlRegex = "/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/i";
+    $replace = "<a href=\"$0\">$0</a>";
+    return preg_replace($urlRegex, $replace, $text);
 }
