@@ -29,7 +29,7 @@ class JobPublished extends Notification
     {
         return (new MailMessage)
             ->line("A “{$this->job->position}” position at {$this->job->organization} was posted to the devICT Job Board")
-            ->action('Edit job post', URL::signedRoute('guest.jobs.edit', ['id' => $this->job->id]));
+            ->action('Edit job post', URL::signedRoute('guest.jobs.edit', ['job' => $this->job->id]));
     }
 
     public function toSlack($notifiable)
