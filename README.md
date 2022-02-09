@@ -1,3 +1,5 @@
+**This project has been ported to go! Visit the new repo here -> https://github.com/devict/job-board**
+
 # devICT Job Board
 
 The greatest job board in all the universe. You've never seen job postings like this before. This baby is jam-packed with features: It's got jobs, it's got links; it's got it all! Before you visit the homepage for the first time, I recommend you find somewhere to sit down because you're not gonna know what hit you. When you first lay eyes on this thing, you might feel compelled to add a new life event to your Facebook timeline - that's normal - this job board is undoubtedly life changing. The ripples of its impact will be felt across space and time. Arias will be written, wars will be fought, masterworks will be produced all in the name of the devICT Job Board.
